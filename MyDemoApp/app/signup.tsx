@@ -467,7 +467,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   signupButton: {
-    backgroundColor: '#28a745',
+    backgroundColor: '#007bff',
     paddingVertical: 15,
     borderRadius: 8,
     marginBottom: 15,
