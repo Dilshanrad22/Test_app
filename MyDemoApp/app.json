@@ -4,7 +4,7 @@
     "slug": "MyDemoApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/mylogo.png",
     "scheme": "mydemoapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -23,7 +23,7 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/mylogo.png"
     },
     "plugins": [
       "expo-router",
