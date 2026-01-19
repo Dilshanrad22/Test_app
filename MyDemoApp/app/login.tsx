@@ -81,6 +81,8 @@ export default function LoginScreen() {
           value={username}
           onChangeText={setUsername}
           autoCapitalize="none"
+          selectionColor="#007bff"
+          underlineColorAndroid="transparent"
         />
         {errors.username ? <Text style={styles.errorText}>{errors.username}</Text> : null}
       </View>
@@ -93,6 +95,8 @@ export default function LoginScreen() {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
+          selectionColor="#007bff"
+          underlineColorAndroid="transparent"
         />
         {errors.password ? <Text style={styles.errorText}>{errors.password}</Text> : null}
       </View>
@@ -144,10 +148,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   inputError: {
-    borderColor: '#ff0000',
+    borderColor: '#0066cc',
   },
   errorText: {
-    color: '#ff0000',
+    color: '#0066cc',
     fontSize: 12,
     marginTop: 5,
     marginLeft: 5,

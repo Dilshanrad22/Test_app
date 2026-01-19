@@ -182,6 +182,8 @@ export default function SignUpScreen() {
             placeholder="First Name"
             value={formData.firstName}
             onChangeText={(text) => updateField('firstName', text)}
+            selectionColor="#007bff"
+            underlineColorAndroid="transparent"
           />
           {errors.firstName ? <Text style={styles.errorText}>{errors.firstName}</Text> : null}
         </View>
@@ -193,6 +195,8 @@ export default function SignUpScreen() {
             placeholder="Last Name"
             value={formData.lastName}
             onChangeText={(text) => updateField('lastName', text)}
+            selectionColor="#007bff"
+            underlineColorAndroid="transparent"
           />
           {errors.lastName ? <Text style={styles.errorText}>{errors.lastName}</Text> : null}
         </View>
@@ -227,6 +231,8 @@ export default function SignUpScreen() {
             value={formData.mobile}
             onChangeText={(text) => updateField('mobile', text)}
             keyboardType="phone-pad"
+            selectionColor="#007bff"
+            underlineColorAndroid="transparent"
           />
           {errors.mobile ? <Text style={styles.errorText}>{errors.mobile}</Text> : null}
         </View>
@@ -240,6 +246,8 @@ export default function SignUpScreen() {
             onChangeText={(text) => updateField('email', text)}
             keyboardType="email-address"
             autoCapitalize="none"
+            selectionColor="#007bff"
+            underlineColorAndroid="transparent"
           />
           {errors.email ? <Text style={styles.errorText}>{errors.email}</Text> : null}
         </View>
@@ -266,6 +274,8 @@ export default function SignUpScreen() {
             value={formData.password}
             onChangeText={(text) => updateField('password', text)}
             secureTextEntry
+            selectionColor="#007bff"
+            underlineColorAndroid="transparent"
           />
           {errors.password ? <Text style={styles.errorText}>{errors.password}</Text> : null}
         </View>
@@ -278,6 +288,8 @@ export default function SignUpScreen() {
             value={formData.confirmPassword}
             onChangeText={(text) => updateField('confirmPassword', text)}
             secureTextEntry
+            selectionColor="#007bff"
+            underlineColorAndroid="transparent"
           />
           {errors.confirmPassword ? <Text style={styles.errorText}>{errors.confirmPassword}</Text> : null}
         </View>
@@ -377,10 +389,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   inputError: {
-    borderColor: '#ff0000',
+    borderColor: '#0066cc',
   },
   errorText: {
-    color: '#ff0000',
+    color: '#0066cc',
     fontSize: 12,
     marginTop: 5,
     marginLeft: 5,
