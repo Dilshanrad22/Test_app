@@ -5,18 +5,15 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
-/**
- * Root Layout Component
- * Defines the main navigation structure for the app
- * Sets up stack navigation for all screens
- */
+//Defines the main navigation structure for the app//
+
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <ThemeProvider value={colorScheme === 'light' ? DefaultTheme : DarkTheme}>
       <Stack>
-        {/* Splash Screen - Initial screen */}
+        {/* Splash Screen */}
         <Stack.Screen name="splash" options={{ headerShown: false }} />
         
         {/* Login Screen */}

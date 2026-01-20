@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { router } from 'expo-router';
 
-/**
- * Splash Screen Component
- * Shows company logo, app title, and version
- * Automatically navigates to login screen after 3 seconds
- */
+
 export default function SplashScreen() {
   useEffect(() => {
     // Auto navigate to login screen after 3 seconds
@@ -19,17 +15,17 @@ export default function SplashScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Company Logo */}
+    
       <Image 
         source={require('@/assets/images/mylogo.png')} 
         style={styles.logo}
         resizeMode="contain"
       />
       
-      {/* App Title */}
+ 
       <Text style={styles.title}>My Demo App</Text>
       
-      {/* Version */}
+  
       <Text style={styles.version}>Version 1.0.0</Text>
     </View>
   );

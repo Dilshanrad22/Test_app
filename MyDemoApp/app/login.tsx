@@ -2,25 +2,18 @@ import React, { useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { router } from 'expo-router';
 
-/**
- * Login Screen Component
- * Contains username/password fields with validation
- * Navigation to sign-up and home screens
- */
+
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({ username: '', password: '' });
 
-  /**
-   * Validate login form fields
-   * Returns true if all fields are valid
-   */
+
   const validateForm = () => {
     const newErrors = { username: '', password: '' };
     let isValid = true;
 
-    // Username validation
+  
     if (!username.trim()) {
       newErrors.username = 'Username is required';
       isValid = false;
@@ -29,7 +22,6 @@ export default function LoginScreen() {
       isValid = false;
     }
 
-    // Password validation
     if (!password.trim()) {
       newErrors.password = 'Password is required';
       isValid = false;
@@ -42,35 +34,28 @@ export default function LoginScreen() {
     return isValid;
   };
 
-  /**
-   * Handle login button press
-   * Validates form and navigates to home screen if valid
-   */
+
   const handleLogin = () => {
     if (validateForm()) {
-      // For demo purposes, accept any valid input
+     
       router.replace('/home');
     }
   };
 
-  /**
-   * Handle sign up link press
-   * Navigates to sign up screen
-   */
+
   const handleSignUp = () => {
     router.push('/signup');
   };
 
   return (
     <View style={styles.container}>
-      {/* Company Logo */}
+     
       <Image 
         source={require('@/assets/images/mylogo.png')} 
         style={styles.logo}
         resizeMode="contain"
       />
 
-      {/* Title */}
       <Text style={styles.title}>Login</Text>
 
       {/* Username Input */}
@@ -101,12 +86,12 @@ export default function LoginScreen() {
         {errors.password ? <Text style={styles.errorText}>{errors.password}</Text> : null}
       </View>
 
-      {/* Sign Up Link */}
+   
       <TouchableOpacity onPress={handleSignUp} style={styles.signupLink}>
         <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
       </TouchableOpacity>
 
-      {/* Login Button */}
+     
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.loginButtonText}>Login</Text>
       </TouchableOpacity>

@@ -19,13 +19,9 @@ interface Country {
   };
 }
 
-/**
- * Sign Up Screen Component
- * Contains registration form with validation
- * Fetches country list from REST API
- */
+
 export default function SignUpScreen() {
-  // Form state
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -68,9 +64,6 @@ export default function SignUpScreen() {
     }
   };
 
-  /**
-   * Update form field value
-   */
   const updateField = (field: string, value: string | boolean) => {
     setFormData(prev => ({
       ...prev,
@@ -85,9 +78,7 @@ export default function SignUpScreen() {
     }
   };
 
-  /**
-   * Validate password according to requirements
-   */
+ 
   const validatePassword = (password: string) => {
     const minLength = password.length >= 8 && password.length <= 30;
     const hasLowerCase = /[a-z]/.test(password);
@@ -104,29 +95,23 @@ export default function SignUpScreen() {
     return '';
   };
 
-  /**
-   * Validate email format
-   */
+
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  /**
-   * Validate mobile number format
-   */
+
   const validateMobile = (mobile: string) => {
     const mobileRegex = /^[0-9]{10,15}$/;
     return mobileRegex.test(mobile);
   };
 
-  /**
-   * Validate all form fields
-   */
+
   const validateForm = () => {
     const newErrors: {[key: string]: string} = {};
 
-    // Required field validations
+ 
     if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
     if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
     if (!formData.gender) newErrors.gender = 'Please select gender';
@@ -150,9 +135,7 @@ export default function SignUpScreen() {
     return Object.keys(newErrors).length === 0;
   };
 
-  /**
-   * Handle sign up button press
-   */
+
   const handleSignUp = () => {
     if (validateForm()) {
       Alert.alert(
@@ -163,9 +146,6 @@ export default function SignUpScreen() {
     }
   };
 
-  /**
-   * Handle back button press
-   */
   const handleBack = () => {
     router.back();
   };
@@ -175,7 +155,7 @@ export default function SignUpScreen() {
       <View style={styles.content}>
         <Text style={styles.title}>Sign Up</Text>
 
-        {/* First Name */}
+       
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input, errors.firstName ? styles.inputError : null]}
@@ -188,7 +168,7 @@ export default function SignUpScreen() {
           {errors.firstName ? <Text style={styles.errorText}>{errors.firstName}</Text> : null}
         </View>
 
-        {/* Last Name */}
+     
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input, errors.lastName ? styles.inputError : null]}
@@ -201,7 +181,7 @@ export default function SignUpScreen() {
           {errors.lastName ? <Text style={styles.errorText}>{errors.lastName}</Text> : null}
         </View>
 
-        {/* Gender Selection */}
+        
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Gender</Text>
           <View style={styles.radioContainer}>
@@ -223,7 +203,7 @@ export default function SignUpScreen() {
           {errors.gender ? <Text style={styles.errorText}>{errors.gender}</Text> : null}
         </View>
 
-        {/* Mobile Number */}
+      
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input, errors.mobile ? styles.inputError : null]}
@@ -237,7 +217,7 @@ export default function SignUpScreen() {
           {errors.mobile ? <Text style={styles.errorText}>{errors.mobile}</Text> : null}
         </View>
 
-        {/* Email */}
+      
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input, errors.email ? styles.inputError : null]}
@@ -252,7 +232,7 @@ export default function SignUpScreen() {
           {errors.email ? <Text style={styles.errorText}>{errors.email}</Text> : null}
         </View>
 
-        {/* Country Dropdown */}
+       
         <View style={styles.inputContainer}>
           <TouchableOpacity 
             style={[styles.countryButton, errors.country ? styles.inputError : null]}
@@ -266,7 +246,7 @@ export default function SignUpScreen() {
           {errors.country ? <Text style={styles.errorText}>{errors.country}</Text> : null}
         </View>
 
-        {/* Password */}
+    
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input, errors.password ? styles.inputError : null]}
@@ -280,7 +260,7 @@ export default function SignUpScreen() {
           {errors.password ? <Text style={styles.errorText}>{errors.password}</Text> : null}
         </View>
 
-        {/* Confirm Password */}
+       
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input, errors.confirmPassword ? styles.inputError : null]}
@@ -294,7 +274,6 @@ export default function SignUpScreen() {
           {errors.confirmPassword ? <Text style={styles.errorText}>{errors.confirmPassword}</Text> : null}
         </View>
 
-        {/* Terms and Conditions Checkbox */}
         <View style={styles.checkboxContainer}>
           <TouchableOpacity 
             style={styles.checkbox}
@@ -308,17 +287,16 @@ export default function SignUpScreen() {
           {errors.agreeTerms ? <Text style={styles.errorText}>{errors.agreeTerms}</Text> : null}
         </View>
 
-        {/* Sign Up Button */}
+  
         <TouchableOpacity style={styles.signupButton} onPress={handleSignUp}>
           <Text style={styles.signupButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
-        {/* Back Button */}
         <TouchableOpacity style={styles.backButton} onPress={handleBack}>
           <Text style={styles.backButtonText}>Back</Text>
         </TouchableOpacity>
 
-        {/* Country Selection Modal */}
+       
         <Modal
           visible={showCountryModal}
           animationType="slide"

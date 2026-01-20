@@ -2,39 +2,29 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { router } from 'expo-router';
 
-/**
- * Home Screen Component
- * Main screen after successful login
- * Contains company logo and exit functionality
- */
+
 export default function HomeScreen() {
-  /**
-   * Handle back button press
-   * Navigates back to login screen
-   */
+ 
   const handleBack = () => {
     router.replace('/login');
   };
 
   return (
     <View style={styles.container}>
-      {/* Title */}
+     
       <Text style={styles.title}>Home</Text>
 
-      {/* Company Logo */}
       <Image 
         source={require('@/assets/images/mylogo.png')} 
         style={styles.logo}
         resizeMode="contain"
       />
 
-      {/* Welcome Message */}
       <Text style={styles.welcomeText}>Welcome to My Demo App!</Text>
       <Text style={styles.descriptionText}>
         You have successfully logged in to the application.
       </Text>
 
-      {/* Back Button */}
       <TouchableOpacity style={styles.backButton} onPress={handleBack}>
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>

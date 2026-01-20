@@ -3,5 +3,4 @@ declare global {
     close(): void;
   }
 }
-
 export {};
