@@ -40,6 +40,10 @@ export default function SignUpScreen() {
   // Modal state for country picker
   const [showCountryModal, setShowCountryModal] = useState(false);
   
+  // Password visibility states
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  
   // Form errors
   const [errors, setErrors] = useState<{[key: string]: string}>({});
 
@@ -146,6 +150,12 @@ export default function SignUpScreen() {
     }
   };
 
+  const handleSignIn = () => {
+    if (validateForm()) {
+      router.push('/login');
+    }
+  };
+
   const handleBack = () => {
     router.back();
   };
@@ -248,29 +258,45 @@ export default function SignUpScreen() {
 
     
         <View style={styles.inputContainer}>
-          <TextInput
-            style={[styles.input, errors.password ? styles.inputError : null]}
-            placeholder="Password"
-            value={formData.password}
-            onChangeText={(text) => updateField('password', text)}
-            secureTextEntry
-            selectionColor="#007bff"
-            underlineColorAndroid="transparent"
-          />
+          <View style={styles.passwordContainer}>
+            <TextInput
+              style={[styles.passwordInput, errors.password ? styles.inputError : null]}
+              placeholder="Password"
+              value={formData.password}
+              onChangeText={(text) => updateField('password', text)}
+              secureTextEntry={!showPassword}
+              selectionColor="#007bff"
+              underlineColorAndroid="transparent"
+            />
+            <TouchableOpacity
+              style={styles.eyeButton}
+              onPress={() => setShowPassword(!showPassword)}
+            >
+              <Text style={styles.eyeIcon}>{showPassword ? '👁️' : '👁️‍🗨️'}</Text>
+            </TouchableOpacity>
+          </View>
           {errors.password ? <Text style={styles.errorText}>{errors.password}</Text> : null}
         </View>
 
        
         <View style={styles.inputContainer}>
-          <TextInput
-            style={[styles.input, errors.confirmPassword ? styles.inputError : null]}
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChangeText={(text) => updateField('confirmPassword', text)}
-            secureTextEntry
-            selectionColor="#007bff"
-            underlineColorAndroid="transparent"
-          />
+          <View style={styles.passwordContainer}>
+            <TextInput
+              style={[styles.passwordInput, errors.confirmPassword ? styles.inputError : null]}
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChangeText={(text) => updateField('confirmPassword', text)}
+              secureTextEntry={!showConfirmPassword}
+              selectionColor="#007bff"
+              underlineColorAndroid="transparent"
+            />
+            <TouchableOpacity
+              style={styles.eyeButton}
+              onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              <Text style={styles.eyeIcon}>{showConfirmPassword ? '👁️' : '👁️‍🗨️'}</Text>
+            </TouchableOpacity>
+          </View>
           {errors.confirmPassword ? <Text style={styles.errorText}>{errors.confirmPassword}</Text> : null}
         </View>
 
@@ -288,8 +314,12 @@ export default function SignUpScreen() {
         </View>
 
   
-        <TouchableOpacity style={styles.signupButton} onPress={handleSignUp}>
-          <Text style={styles.signupButtonText}>Sign Up</Text>
+        <TouchableOpacity style={styles.signupButton} onPress={handleSignIn}>
+          <Text style={styles.signupButtonText}>Sign In</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.signinLink} onPress={() => router.push('/login')}>
+          <Text style={styles.signinText}>Already have an account? Sign In</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.backButton} onPress={handleBack}>
@@ -365,6 +395,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     fontSize: 16,
     backgroundColor: '#ffffff',
+  },
+  passwordContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#dddddd',
+    borderRadius: 8,
+    backgroundColor: '#ffffff',
+  },
+  passwordInput: {
+    flex: 1,
+    height: 50,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    backgroundColor: 'transparent',
+    borderWidth: 0,
+  },
+  eyeButton: {
+    paddingHorizontal: 15,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  eyeIcon: {
+    fontSize: 20,
   },
   inputError: {
     borderColor: '#0066cc',
@@ -467,6 +522,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  signinLink: {
+    marginBottom: 15,
+    alignItems: 'center',
+  },
+  signinText: {
+    color: '#007bff',
+    fontSize: 16,
+    textDecorationLine: 'underline',
   },
   backButton: {
     backgroundColor: '#6c757d',
