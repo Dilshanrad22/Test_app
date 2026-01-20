@@ -1,24 +1,27 @@
+
 import React, { useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Alert, BackHandler, Platform } from 'react-native';
 import { router } from 'expo-router';
 
-
 export default function LoginScreen() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({ username: '', password: '' });
+  const [errors, setErrors] = useState({ email: '', password: '' });
 
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const validateForm = () => {
-    const newErrors = { username: '', password: '' };
+    const newErrors = { email: '', password: '' };
     let isValid = true;
 
-  
-    if (!username.trim()) {
-      newErrors.username = 'Username is required';
+    if (!email.trim()) {
+      newErrors.email = 'Email is required';
       isValid = false;
-    } else if (username.length < 3) {
-      newErrors.username = 'Username must be at least 3 characters';
+    } else if (!validateEmail(email)) {
+      newErrors.email = 'Invalid email address';
       isValid = false;
     }
 
@@ -74,18 +77,20 @@ export default function LoginScreen() {
 
       <Text style={styles.title}>Login</Text>
 
-      {/* Username Input */}
+
+      {/* Email Input */}
       <View style={styles.inputContainer}>
         <TextInput
-          style={[styles.input, errors.username ? styles.inputError : null]}
-          placeholder="User Name"
-          value={username}
-          onChangeText={setUsername}
+          style={[styles.input, errors.email ? styles.inputError : null]}
+          placeholder="Email Address"
+          value={email}
+          onChangeText={setEmail}
           autoCapitalize="none"
+          keyboardType="email-address"
           selectionColor="#007bff"
           underlineColorAndroid="transparent"
         />
-        {errors.username ? <Text style={styles.errorText}>{errors.username}</Text> : null}
+        {errors.email ? <Text style={styles.errorText}>{errors.email}</Text> : null}
       </View>
 
       {/* Password Input */}

@@ -314,8 +314,8 @@ export default function SignUpScreen() {
         </View>
 
   
-        <TouchableOpacity style={styles.signupButton} onPress={handleSignIn}>
-          <Text style={styles.signupButtonText}>Sign In</Text>
+        <TouchableOpacity style={styles.signupButton} onPress={handleSignUp}>
+          <Text style={styles.signupButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.signinLink} onPress={() => router.push('/login')}>
@@ -395,6 +395,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     fontSize: 16,
     backgroundColor: '#ffffff',
+    color: '#222', // dark input text
   },
   passwordContainer: {
     flexDirection: 'row',
@@ -411,6 +412,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     backgroundColor: 'transparent',
     borderWidth: 0,
+    color: '#222', // dark input text
   },
   eyeButton: {
     paddingHorizontal: 15,
@@ -476,7 +478,7 @@ const styles = StyleSheet.create({
     color: '#333333',
   },
   placeholder: {
-    color: '#999999',
+    color: '#555555', // darker placeholder
   },
   dropdownArrow: {
     fontSize: 12,
