@@ -1,12 +1,23 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { router } from 'expo-router';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Alert, BackHandler, Platform } from 'react-native';
 
 
 export default function HomeScreen() {
  
+  // Exit app when Back button is pressed
   const handleBack = () => {
-    router.replace('/login');
+    if (Platform.OS === 'android') {
+      Alert.alert(
+        'Exit App',
+        'Are you sure you want to exit?',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'Exit', onPress: () => BackHandler.exitApp() }
+        ]
+      );
+    } else {
+      Alert.alert('Exit', 'Please close the app manually on iOS/Web');
+    }
   };
 
   return (

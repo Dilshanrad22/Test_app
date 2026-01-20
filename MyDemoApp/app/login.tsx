@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Alert, BackHandler, Platform } from 'react-native';
 import { router } from 'expo-router';
 
 
@@ -45,6 +45,22 @@ export default function LoginScreen() {
 
   const handleSignUp = () => {
     router.push('/signup');
+  };
+
+  // Exit app when Back button is pressed
+  const handleBack = () => {
+    if (Platform.OS === 'android') {
+      Alert.alert(
+        'Exit App',
+        'Are you sure you want to exit?',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'Exit', onPress: () => BackHandler.exitApp() }
+        ]
+      );
+    } else {
+      Alert.alert('Exit', 'Please close the app manually on iOS/Web');
+    }
   };
 
   return (
@@ -94,6 +110,11 @@ export default function LoginScreen() {
      
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.loginButtonText}>Login</Text>
+      </TouchableOpacity>
+
+      {/* Back Button - Exit App */}
+      <TouchableOpacity style={styles.backButton} onPress={handleBack}>
+        <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
     </View>
   );
@@ -154,11 +175,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
     paddingVertical: 15,
     borderRadius: 8,
-    marginBottom: 20,
+    marginBottom: 15,
+    width: '100%',
+    alignItems: 'center',
   },
   loginButtonText: {
     color: '#ffffff',
     fontSize: 18,
+    fontWeight: 'bold',
+  },
+  backButton: {
+    backgroundColor: '#6c757d',
+    paddingHorizontal: 50,
+    paddingVertical: 12,
+    borderRadius: 8,
+    width: '100%',
+    alignItems: 'center',
+  },
+  backButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });
